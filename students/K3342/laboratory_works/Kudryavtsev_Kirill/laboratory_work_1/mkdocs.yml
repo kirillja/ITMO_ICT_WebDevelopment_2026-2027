@@ -1,0 +1,22 @@
+site_name: Веб-программирование — Кудрявцев Кирилл — К3342
+site_description: Лабораторная работа 1. Работа с сокетами
+site_author: Кудрявцев Кирилл
+site_dir: site
+theme:
+  name: material
+  language: ru
+  features:
+    - content.code.copy
+nav:
+  - Главная: index.md
+  - ЛР1:
+      - Отчёт: lr1/report.md
+      - Исходный код: lr1/source.md
+      - Проверки: lr1/testing.md
+      - Подготовка к защите: lr1/defense.md
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+site_url: https://kirillja.github.io/ITMO_ICT_WebDevelopment_2026-2027/
+repo_url: https://github.com/kirillja/ITMO_ICT_WebDevelopment_2026-2027

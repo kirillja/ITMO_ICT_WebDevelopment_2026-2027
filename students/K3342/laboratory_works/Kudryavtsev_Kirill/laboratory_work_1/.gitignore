@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+site/
+*.sqlite3
+*.db
+grades.json
+grades.json.tmp
+.DS_Store
