@@ -1,0 +1,10 @@
+test_chat_three_users_duplicate_name_messages_exit (test_integration.IntegrationTests.test_chat_three_users_duplicate_name_messages_exit) ... ok
+test_gradebook_grouping_errors_escaping_restart (test_integration.IntegrationTests.test_gradebook_grouping_errors_escaping_restart) ... ok
+test_static_html (test_integration.IntegrationTests.test_static_html) ... ok
+test_tcp_calculation_and_keyboard (test_integration.IntegrationTests.test_tcp_calculation_and_keyboard) ... ok
+test_udp_exchange (test_integration.IntegrationTests.test_udp_exchange) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.272s
+
+OK

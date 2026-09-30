@@ -1,0 +1,957 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Лабораторная работа 1. Работа с сокетами">
+      
+      
+        <meta name="author" content="Кудрявцев Кирилл">
+      
+      
+        <link rel="canonical" href="https://kirillja.github.io/ITMO_ICT_WebDevelopment_2026-2027/lr1/report/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Отчёт - Веб-программирование — Кудрявцев Кирилл — К3342</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Веб-программирование — Кудрявцев Кирилл — К3342" class="md-header__button md-logo" aria-label="Веб-программирование — Кудрявцев Кирилл — К3342" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Веб-программирование — Кудрявцев Кирилл — К3342
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Отчёт
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kirillja/ITMO_ICT_WebDevelopment_2026-2027" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Веб-программирование — Кудрявцев Кирилл — К3342" class="md-nav__button md-logo" aria-label="Веб-программирование — Кудрявцев Кирилл — К3342" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Веб-программирование — Кудрявцев Кирилл — К3342
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kirillja/ITMO_ICT_WebDevelopment_2026-2027" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ЛР1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Отчёт
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Отчёт
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура и запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 1 Обмен сообщениями по UDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 2 Теорема Пифагора через TCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-html-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 3 Отправка HTML через HTTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tcp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 4 Многопользовательский TCP-чат
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-get-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 5 Журнал оценок через GET и POST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Результаты и ограничения
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывод
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исходный код
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к защите
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура и запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 1 Обмен сообщениями по UDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 2 Теорема Пифагора через TCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-html-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 3 Отправка HTML через HTTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tcp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 4 Многопользовательский TCP-чат
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-get-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание 5 Журнал оценок через GET и POST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Результаты и ограничения
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вывод
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="1">Лабораторная работа 1 Работа с сокетами</h1>
+<p><strong>Студент:</strong> Кудрявцев Кирилл Станиславович. <strong>Группа:</strong> К3342.
+<strong>Поток:</strong> WEB 2.3. <strong>Номер в журнале:</strong> 13. <strong>Вариант:</strong> 1.</p>
+<p>Цель работы — изучить взаимодействие клиента и сервера через сокеты.
+Реализованы пять приложений: UDP-обмен, TCP-вычисление гипотенузы,
+раздача HTML, многопользовательский TCP-чат и HTTP-журнал оценок.</p>
+<p><a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/">Условие лабораторной</a>
+задаёт операции и требования к протоколам.
+<a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/submission/mkdocs-deploy/">Правила отчёта</a>
+требуют MkDocs и примеры работы в терминале.</p>
+<h2 id="_1">Структура и запуск</h2>
+<p>Нужен Python 3.10+. Приложения используют только стандартную библиотеку.
+Команды выполняются из папки <code>laboratory_work_1</code>. Сервер запускается первым;
+для клиента открывается отдельный терминал. <code>Ctrl+C</code> останавливает сервер.</p>
+<div class="highlight"><pre><span></span><code>laboratory_work_1/
+  common.py            аргументы CLI и создание TCP-сервера
+  http_protocol.py     чтение HTTP-запроса и формирование ответа
+  task1/               сервер и клиент UDP
+  task2/               сервер и клиент TCP-вычислений
+  task3/               HTTP-сервер и index.html
+  task4/               сервер и универсальный клиент чата
+  task5/               HTTP-сервер журнала оценок
+  tests/               проверки реального обмена по сети
+  docs/                отчёт MkDocs
+  mkdocs.yml
+</code></pre></div>
+<p>Все серверы по умолчанию слушают <code>127.0.0.1</code>. Порт меняется через <code>--port</code>;
+клиент должен использовать такой же порт. Параметр <code>--host</code> меняет адрес.</p>
+<h2 id="1-udp">Задание 1 Обмен сообщениями по UDP</h2>
+<p>Сервер создаёт <code>socket(AF_INET, SOCK_DGRAM)</code>, привязывается к адресу через
+<code>bind()</code> и получает сообщение через <code>recvfrom()</code>. Вместе с датаграммой он
+получает адрес отправителя, которому отвечает через <code>sendto()</code>.</p>
+<p>Клиент отправляет строго <code>Hello, server</code>. Сервер выводит эту строку и возвращает
+<code>Hello, client</code>, которую выводит клиент. UDP не гарантирует доставку; клиент
+ждёт ответ не более пяти секунд. Вызов UDP <code>connect()</code> выбирает адрес
+получателя, но не устанавливает TCP-соединение.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task1.server
+python3<span class="w"> </span>-m<span class="w"> </span>task1.client
+</code></pre></div>
+<p>Ожидаемый успешный обмен:</p>
+<div class="highlight"><pre><span></span><code>Сервер: Hello, server
+Клиент: Hello, client
+</code></pre></div>
+<h2 id="2-tcp">Задание 2 Теорема Пифагора через TCP</h2>
+<p>По номеру 13 получен вариант 1. Клиент считывает два катета с клавиатуры;
+сервер вычисляет гипотенузу <code>c = sqrt(a² + b²)</code> с помощью <code>math.hypot(a, b)</code>.
+Функция <code>hypot</code> уменьшает риск переполнения промежуточных квадратов.</p>
+<p>Используется <code>SOCK_STREAM</code>. Сервер вызывает <code>listen()</code> и <code>accept()</code>, клиент —
+<code>create_connection()</code>. Запрос — JSON в UTF-8, завершённый переводом строки:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">}</span>
+</code></pre></div>
+<p>Успешный ответ:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">}}</span>
+</code></pre></div>
+<p>TCP передаёт поток байт, поэтому один <code>recv()</code> не определяет сообщение целиком.
+<code>readline()</code> читает до <code>\n</code>, даже если запрос пришёл несколькими частями.
+Длина запроса ограничена 4096 байтами. Сервер отвергает отрицательные,
+нулевые, нечисловые и бесконечные значения. В ответе об ошибке возвращается
+<code>ok: false</code> с объяснением. Клиент также проверяет ввод и допускает десятичную запятую.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task2.server
+python3<span class="w"> </span>-m<span class="w"> </span>task2.client
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Первый катет a: 3
+Второй катет b: 4
+Гипотенуза c = 5
+</code></pre></div>
+<h2 id="3-html-http">Задание 3 Отправка HTML через HTTP</h2>
+<p>Сервер загружает <code>task3/index.html</code> как байты при запросе <code>GET /</code> или
+<code>GET /index.html</code>. Путь определяется относительно файла сервера, поэтому
+выбор рабочей директории не влияет на поиск HTML.</p>
+<p>Ответ строится вручную: строка статуса, заголовки, пустая строка, тело.
+Строки заголовков разделены <code>\r\n</code>, конец заголовков — <code>\r\n\r\n</code>.
+<code>Content-Length</code> равен числу <strong>байт</strong>, а не символов HTML.
+<code>Content-Type: text/html; charset=utf-8</code> позволяет отображать русский текст.
+<code>sendall()</code> отправляет всё сообщение, после ответа соединение закрывается.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task3.server
+curl<span class="w"> </span>-i<span class="w"> </span>http://127.0.0.1:9003/
+</code></pre></div>
+<p>В браузере открыть <a href="http://127.0.0.1:9003/">локальную страницу</a>.
+Неизвестный путь возвращает 404, метод кроме GET — 405 с <code>Allow: GET</code>.</p>
+<h2 id="4-tcp-">Задание 4 Многопользовательский TCP-чат</h2>
+<p>Сервер хранит словарь активных соединений и создаёт
+<code>threading.Thread(target=chat.handle, ...)</code> для каждого клиента. Один и тот же
+<code>task4/client.py</code> запускается независимо любым количеством пользователей;
+имена вводятся с клавиатуры и не зашиты в отдельные клиентские файлы.</p>
+<p>Имя занимает от 1 до 32 символов. Сервер проверяет уникальность без учёта
+регистра: <code>Alice</code> и <code>alice</code> считаются одним именем. Первая строка клиента —
+имя, последующие строки — сообщения. Команда <code>/quit</code> выводит <code>BYE</code> и завершает
+участие. EOF и обрыв соединения также удаляют клиента и освобождают имя.</p>
+<table>
+<thead>
+<tr>
+<th>Префикс</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>Запрос имени</td>
+</tr>
+<tr>
+<td>OK</td>
+<td>Подтверждение входа</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>Некорректное или занятое имя, слишком длинное сообщение</td>
+</tr>
+<tr>
+<td>MSG</td>
+<td>Имя отправителя и текст сообщения</td>
+</tr>
+<tr>
+<td>SYSTEM</td>
+<td>Уведомление о входе или выходе</td>
+</tr>
+<tr>
+<td>BYE</td>
+<td>Подтверждение выхода</td>
+</tr>
+</tbody>
+</table>
+<p>Сервер рассылает сообщение всем остальным участникам. Блокировка <code>self.lock</code>
+защищает список клиентов. Для рассылки создаётся копия списка, после чего
+общая блокировка освобождается. У каждого клиента есть отдельный <code>send_lock</code>,
+чтобы разные серверные потоки не смешивали байты сообщений одному получателю.
+Клиент использует отдельный поток получения, поэтому видит сообщения,
+пока основной поток ждёт ввод с клавиатуры.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task4.server
+<span class="c1"># В трёх разных терминалах:</span>
+python3<span class="w"> </span>-m<span class="w"> </span>task4.client
+</code></pre></div>
+<p>Например, Alice отправляет <code>Привет</code>, Bob и Кирилл получают <code>MSG Alice: Привет</code>.
+При <code>/quit</code> от Bob остальные получают <code>SYSTEM Bob вышел из чата</code>.</p>
+<h2 id="5-get-post">Задание 5 Журнал оценок через GET и POST</h2>
+<p>HTTP реализован через <code>socket</code>, без <code>http.server</code>, Flask или Django.
+Парсер читает заголовки до <code>\r\n\r\n</code>, затем дочитывает тело по
+<code>Content-Length</code>. Ограничения: 16 КиБ заголовков, 64 КиБ тела, пять секунд
+ожидания. Поддерживается одно обращение на соединение, без chunked transfer.</p>
+<p>Журнал хранится как <code>dict[str, list[int]]</code>, поэтому все оценки одного предмета
+находятся в одной записи:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"Математика"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="nt">"Веб-программирование"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">]}</span>
+</code></pre></div>
+<p>Данные сохраняются в JSON-файл атомарной заменой временного файла. После
+перезапуска оценки подгружаются. Хранилище не включается в Git.
+Сервер последовательно обрабатывает HTTP-подключения, поэтому операции с
+журналом не выполняются одновременно. Одновременно запущенные серверы
+должны использовать разные файлы данных.</p>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Входные данные</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/</code> или <code>/grades</code></td>
+<td>Нет</td>
+<td>200, таблица оценок и HTML-форма</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/grades</code></td>
+<td><code>subject</code>, <code>grade</code> в HTML-форме</td>
+<td>Сохранение и 303 на <code>/grades</code></td>
+</tr>
+<tr>
+<td>Другой метод</td>
+<td>Известный путь</td>
+<td>Любые</td>
+<td>405 и заголовок Allow</td>
+</tr>
+<tr>
+<td>Любой</td>
+<td>Неизвестный путь</td>
+<td>Любые</td>
+<td>404</td>
+</tr>
+</tbody>
+</table>
+<p>HTML-форма отправляет <code>application/x-www-form-urlencoded</code>. Дисциплина должна
+содержать 1–100 символов после удаления пробелов по краям, оценка — целое
+число от 1 до 5. Ошибки данных возвращают 400, неподдерживаемый тип тела —
+415, отсутствие Content-Length у POST — 411. Названия экранируются через
+<code>html.escape()</code>, поэтому пользовательский HTML отображается как текст.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task5.server
+curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:9005/grades<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-urlencode<span class="w"> </span><span class="s1">'subject=Математика'</span><span class="w"> </span>--data<span class="w"> </span><span class="s1">'grade=5'</span>
+curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:9005/grades<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-urlencode<span class="w"> </span><span class="s1">'subject=Математика'</span><span class="w"> </span>--data<span class="w"> </span><span class="s1">'grade=4'</span>
+curl<span class="w"> </span>http://127.0.0.1:9005/grades
+</code></pre></div>
+<p>В браузере открыть <a href="http://127.0.0.1:9005/">журнал оценок</a>.
+После двух запросов в строке «Математика» показаны оценки <code>5, 4</code>.</p>
+<h2 id="_2">Результаты и ограничения</h2>
+<p><a href="../testing/">Пять интеграционных проверок</a> прошли на Python 3.13.
+Они используют реальные процессы и сетевые соединения. Проверены три
+одновременных клиента чата, повторное имя, выход, передача TCP-запроса частями,
+сохранение журнала и экранирование HTML. <a href="../source/">Полный исходный код</a>
+позволяет сопоставить реализацию с описанным протоколом.</p>
+<p>Это учебные локальные серверы. HTTP не поддерживает keep-alive, TLS и
+Transfer-Encoding. Чат не хранит историю и не аутентифицирует пользователей;
+его имя служит идентификатором участника. Медленный получатель может
+задержать отправку своего сообщения. Если сервер чата отключился во время
+ожидания <code>input()</code>, клиент сообщает об этом; для завершения ввода нажмите Enter.</p>
+<h2 id="_3">Вывод</h2>
+<p>Реализован обмен датаграммами UDP, вычисление по TCP, ручное формирование
+HTTP, параллельная обработка клиентов через <code>threading</code> и структурированное
+хранение оценок. Границы TCP-сообщений определяются протоколом приложения,
+а размер HTTP-тела — заголовком Content-Length.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
