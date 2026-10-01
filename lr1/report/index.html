@@ -514,34 +514,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../defense/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Подготовка к защите
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -689,14 +661,11 @@
 <p>Цель работы — изучить взаимодействие клиента и сервера через сокеты.
 Реализованы пять приложений: UDP-обмен, TCP-вычисление гипотенузы,
 раздача HTML, многопользовательский TCP-чат и HTTP-журнал оценок.</p>
-<p><a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/">Условие лабораторной</a>
-задаёт операции и требования к протоколам.
-<a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/submission/mkdocs-deploy/">Правила отчёта</a>
-требуют MkDocs и примеры работы в терминале.</p>
+<p><a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/">Условие лабораторной работы</a>.</p>
 <h2 id="_1">Структура и запуск</h2>
 <p>Нужен Python 3.10+. Приложения используют только стандартную библиотеку.
-Команды выполняются из папки <code>laboratory_work_1</code>. Сервер запускается первым;
-для клиента открывается отдельный терминал. <code>Ctrl+C</code> останавливает сервер.</p>
+Команды выполняются из папки <code>laboratory_work_1</code>. Сервер и клиент запускаются в отдельных терминалах.
+<code>Ctrl+C</code> останавливает сервер.</p>
 <div class="highlight"><pre><span></span><code>laboratory_work_1/
   common.py            аргументы CLI и создание TCP-сервера
   http_protocol.py     чтение HTTP-запроса и формирование ответа
@@ -722,7 +691,7 @@
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>task1.server
 python3<span class="w"> </span>-m<span class="w"> </span>task1.client
 </code></pre></div>
-<p>Ожидаемый успешный обмен:</p>
+<p>Результат обмена:</p>
 <div class="highlight"><pre><span></span><code>Сервер: Hello, server
 Клиент: Hello, client
 </code></pre></div>
