@@ -7,16 +7,13 @@
 Реализованы пять приложений: UDP-обмен, TCP-вычисление гипотенузы,
 раздача HTML, многопользовательский TCP-чат и HTTP-журнал оценок.
 
-[Условие лабораторной](https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/)
-задаёт операции и требования к протоколам.
-[Правила отчёта](https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/submission/mkdocs-deploy/)
-требуют MkDocs и примеры работы в терминале.
+[Условие лабораторной работы](https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/).
 
 ## Структура и запуск
 
 Нужен Python 3.10+. Приложения используют только стандартную библиотеку.
-Команды выполняются из папки `laboratory_work_1`. Сервер запускается первым;
-для клиента открывается отдельный терминал. `Ctrl+C` останавливает сервер.
+Команды выполняются из папки `laboratory_work_1`. Сервер и клиент запускаются в отдельных терминалах.
+`Ctrl+C` останавливает сервер.
 
 ```text
 laboratory_work_1/
@@ -51,7 +48,7 @@ python3 -m task1.server
 python3 -m task1.client
 ```
 
-Ожидаемый успешный обмен:
+Результат обмена:
 
 ```text
 Сервер: Hello, server

@@ -13,7 +13,6 @@ nav:
       - Отчёт: lr1/report.md
       - Исходный код: lr1/source.md
       - Проверки: lr1/testing.md
-      - Подготовка к защите: lr1/defense.md
 markdown_extensions:
   - admonition
   - pymdownx.highlight

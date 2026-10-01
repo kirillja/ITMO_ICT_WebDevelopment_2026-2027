@@ -51,4 +51,4 @@ mkdocs gh-deploy --remote-name origin
 ```
 
 В настройках Pages нужно выбрать ветку `gh-pages` и папку `/ (root)`.
-Не добавляйте `site/`, `.venv/`, `__pycache__/` или созданный журнал в коммит.
+`site/`, `.venv/`, `__pycache__/` и файл журнала исключены через `.gitignore`.
